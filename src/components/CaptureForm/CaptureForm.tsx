@@ -11,11 +11,16 @@ const CaptureForm = () => {
   const token = localStorage.getItem("taskbot_token") || "";
 
   const onSubmit = async (data: ITask) => {
+    const tags = data.tags
+      .split(/[\s,]+/)
+      .map((tag) => tag.trim())
+      .filter((tag) => tag.length > 0);
+
     const queryString = new URLSearchParams({
       token,
       title: encodeURIComponent(data.title),
       description: encodeURIComponent(data.description),
-      tags: encodeURIComponent(data.tags),
+      tags: tags.join(","),
       budget_from: data.budget_from.toString(),
       budget_to: data.budget_to.toString(),
       deadline: data.deadline_days.toString(),
