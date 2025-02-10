@@ -1,17 +1,26 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
 
 export default function AuthPage() {
   const [token, setToken] = useState("");
-  const [error, setError] = useState<string>("");
+  const [error, setError] = useState<string | null>(null);
   const router = useRouter();
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const savedToken = localStorage.getItem("taskbot_token");
+      if (savedToken) {
+        setToken(savedToken);
+      }
+    }
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError("");
+    setError(null);
 
     try {
       const response = await fetch(
@@ -19,7 +28,9 @@ export default function AuthPage() {
       );
 
       if (response.status === 200 || response.status === 422) {
-        localStorage.setItem("taskbot_token", token);
+        if (typeof window !== "undefined") {
+          localStorage.setItem("taskbot_token", token);
+        }
         router.push("/new-task");
       } else {
         setError("Неверный токен. Попробуйте еще раз.");
