@@ -40,7 +40,7 @@ const CaptureForm = () => {
       } else {
         alert("Ошибка при публикации задачи!");
       }
-    } catch (error) {
+    } catch {
       alert("Ошибка при отправке запроса!");
     }
   };
