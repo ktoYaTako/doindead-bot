@@ -24,7 +24,7 @@ export default function AuthPage() {
       } else {
         setError("Неверный токен. Попробуйте еще раз.");
       }
-    } catch (error) {
+    } catch {
       setError("Ошибка при проверке токена.");
     }
   };
