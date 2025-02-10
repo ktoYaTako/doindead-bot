@@ -41,7 +41,7 @@ export default function AuthPage() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen">
+    <div className="flex flex-col items-center justify-center">
       <h1 className="text-2xl mb-4">Введите токен</h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <Input
