@@ -10,7 +10,7 @@ const CaptureForm = () => {
   const form = useForm<ITask>();
   const token = localStorage.getItem("taskbot_token") || "";
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: ITask) => {
     const queryString = new URLSearchParams({
       token,
       title: encodeURIComponent(data.title),
@@ -47,7 +47,6 @@ const CaptureForm = () => {
 
   return (
     <div>
-      <h1>Capture Form</h1>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}

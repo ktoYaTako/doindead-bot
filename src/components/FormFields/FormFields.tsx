@@ -6,7 +6,7 @@ import { UseFormReturn } from "react-hook-form";
 import ITask from "@/shared/types/task.interface";
 
 interface IFormFieldProps {
-  form: UseFormReturn<ITask, any, undefined>;
+  form: UseFormReturn<ITask, undefined>;
 }
 
 const FormFields = ({ form }: IFormFieldProps) => {

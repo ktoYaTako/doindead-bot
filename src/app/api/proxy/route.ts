@@ -18,9 +18,9 @@ export async function GET(req: Request) {
 
     const data = await response.json();
     return NextResponse.json(data, { status: response.status });
-  } catch (error: any) {
+  } catch (error) {
     return NextResponse.json(
-      { error: "Ошибка прокси", details: error?.message },
+      { error: "Ошибка прокси", details: error },
       { status: 500 }
     );
   }

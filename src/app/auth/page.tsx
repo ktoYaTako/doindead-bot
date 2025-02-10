@@ -6,12 +6,12 @@ import { Input } from "@/components/ui/input";
 
 export default function AuthPage() {
   const [token, setToken] = useState("");
-  const [error, setError] = useState("");
+  const [error, setError] = useState<string | null>("");
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError("");
+    setError(null);
 
     try {
       const response = await fetch(
